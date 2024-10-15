@@ -1,0 +1,18 @@
+{
+    "name": "character_info_service",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
+        "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "mongodb": "^3.6.9",
+        "next": "11.0.1",
+        "react": "17.0.2",
+        "react-dom": "17.0.2"
+    }
+}

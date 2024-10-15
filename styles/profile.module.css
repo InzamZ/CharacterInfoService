@@ -1,0 +1,64 @@
+/* profile.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* 引入Roboto字体 */
+.container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* 头像 */
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid;
+    transition: border-color 0.3s ease;
+    /* 过渡动画 */
+}
+
+/* 根据性别动态更改头像框颜色 */
+.avatar.male {
+    border-color: #4a90e2;
+    /* 蓝色 */
+}
+
+.avatar.female {
+    border-color: #e94a63;
+    /* 红色 */
+}
+
+.avatar.other {
+    border-color: #000000;
+    /* 黑色 */
+}
+
+.avatar.lgbtq {
+    border-image: linear-gradient(to right, red, orange, yellow, green, blue, purple) 1;
+    /* 彩虹色 */
+}
+
+
+/* 信息表格样式 */
+.info-table {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.info-table td {
+    padding: 10px;
+    font-size: 16px;
+    color: #444;
+    border-bottom: 1px solid #f1f1f1;
+}

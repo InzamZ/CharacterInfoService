@@ -1,0 +1,55 @@
+/* styles/globals.css */
+/* 用户名 */
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+/* 简介 */
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+/* 信息列表 */
+ul {
+    list-style: none;
+    /* 移除小黑点 */
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    font-size: 16px;
+    color: #444;
+    padding: 10px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+}
+
+
+/* 按钮 */
+button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #357ab7;
+}

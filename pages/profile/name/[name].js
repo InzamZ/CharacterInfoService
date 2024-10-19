@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
+import { ObjectId } from 'mongodb';
 import styles from '../../../styles/profile.module.css';   // 引入 CSS 模块
 
 // 默认用户信息
@@ -20,7 +21,19 @@ export async function getServerSideProps({ params }) {
     try {
         const res = await axios.get(`https://char.misaka19614.com/api/name/profile?name=${decodeURIComponent(params.name)}`);
         const profile = res.data;
+
+        // 将 MongoDB 的 ObjectId 转换为字符串
+        if (profile._id && profile._id instanceof ObjectId) {
+            profile._id = profile._id.toString();
+        }
+
+        // 确保其他可能的 ObjectId 字段也被转换为字符串
+        if (profile.uuid && profile.uuid instanceof ObjectId) {
+            profile.uuid = profile.uuid.toString();
+        }
+
         console.log('Profile found:', profile);
+        console.log('profile._id found:', profile._id, typeof profile._id);
         return {
             props: {
                 profile,
@@ -55,7 +68,7 @@ export default function ProfilePage({ profile }) {
                 <meta property="og:title" content={profile.name} />
                 <meta property="og:description" content={profile.bio} />
                 <meta property="og:image" content={profile.avatar} />
-                <meta property="og:url" content={`https://your-vercel-url/profile/${profile._id}`} />
+                <meta property="og:url" content={`https://char.misaka19614.com/profile/userId/${profile.uuid}`} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={profile.name} />
                 <meta name="twitter:description" content={profile.bio} />

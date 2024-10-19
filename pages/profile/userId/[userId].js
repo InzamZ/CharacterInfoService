@@ -1,6 +1,21 @@
 import Head from 'next/head';
-import axios from 'axios';
+import { MongoClient, ObjectId } from 'mongodb';
 import styles from '../../../styles/profile.module.css';   // 引入 CSS 模块
+
+// 创建数据库连接
+const client = new MongoClient(process.env.MONGODB_ATLAS_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+let db;
+
+async function connectToDatabase() {
+    if (!db) {
+        await client.connect();
+        db = client.db('CharacterProfiles');
+    }
+    return db;
+}
 
 // 默认用户信息
 const defaultProfile = {
@@ -18,15 +33,31 @@ const defaultProfile = {
 
 export async function getServerSideProps({ params }) {
     try {
-        const res = await axios.get(`https://char.misaka19614.com/api/userId/profile?userId=${params.userId}`);
-        const profile = res.data;
-        console.log('Profile found:', profile);
+
+        const userId = params.userId;
+
+        console.log('userId:', userId);
+
+        const db = await connectToDatabase();
+        const collection = db.collection('default');
+        let profile = await collection.findOne({ uuid: userId });
+        console.log('profile:', profile);
+
+        // 将 MongoDB 的 ObjectId 转换为字符串
+        if (profile._id && profile._id instanceof ObjectId) {
+            profile._id = profile._id.toString();
+        }
+
+        if (!profile) {
+            profile = defaultProfile;
+        }
         return {
             props: {
                 profile,
             },
         };
     } catch (error) {
+        console.log('error:', error);
         return {
             props: {
                 profile: defaultProfile,
@@ -55,7 +86,7 @@ export default function ProfilePage({ profile }) {
                 <meta property="og:title" content={profile.name} />
                 <meta property="og:description" content={profile.bio} />
                 <meta property="og:image" content={profile.avatar} />
-                <meta property="og:url" content={`https://your-vercel-url/profile/${profile._id}`} />
+                <meta property="og:url" content={`https://char.misaka19614.com/profile/userId/${profile.uuid}`} />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content={profile.name} />
                 <meta name="twitter:description" content={profile.bio} />

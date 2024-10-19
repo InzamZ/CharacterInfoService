@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import axios from 'axios';
-import styles from '../../styles/profile.module.css';   // 引入 CSS 模块
+import styles from '../../../styles/profile.module.css';   // 引入 CSS 模块
 
 // 默认用户信息
 const defaultProfile = {

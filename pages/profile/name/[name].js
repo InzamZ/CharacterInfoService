@@ -18,7 +18,7 @@ const defaultProfile = {
 
 export async function getServerSideProps({ params }) {
     try {
-        const res = await axios.get(`https://char.misaka19614.com/api/profile?userId=${params.userId}`);
+        const res = await axios.get(`https://char.misaka19614.com/api/name/profile?name=${params.name}`);
         const profile = res.data;
         console.log('Profile found:', profile);
         return {

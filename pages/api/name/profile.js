@@ -16,7 +16,8 @@ async function connectToDatabase() {
 }
 
 export default async function handler(req, res) {
-    const { search_name } = req.query;
+    let search_name = req.query;
+    search_name = decodeURIComponent(search_name)
 
     console.log('name:', search_name);
     console.log('name:', search_name, typeof search_name);

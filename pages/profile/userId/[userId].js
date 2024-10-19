@@ -63,7 +63,17 @@ export default function ProfilePage({ profile }) {
                 <title>{profile.name}的个人信息</title>
             </Head>
             <div className={styles.container}>
-                <img src={profile.avatar} alt="Profile Avatar" className={getAvatarClass(profile.gender)} />
+                <img
+                    src={profile.avatar}
+                    alt="Profile Avatar"
+                    className={getAvatarClass(profile.gender)}
+                    style={{
+                        width: '100px',       // 设定正方形的宽度
+                        height: '100px',      // 设定正方形的高度
+                        objectFit: 'cover',   // 图片等比例缩放并裁剪
+                        objectPosition: 'top left', // 截取图片的左上角
+                    }}
+                />
                 <h1>{profile.name}</h1>
                 <p>{profile.bio}</p>
                 <ul>

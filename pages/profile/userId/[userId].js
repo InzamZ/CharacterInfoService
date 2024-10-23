@@ -28,7 +28,7 @@ const defaultProfile = {
     joinDate: '2020/01/01 00:00',
     lastActive: '2024/01/01 00:00',
     gender: 'female',
-    group: '位置'
+    group: '未知',
 };
 
 export async function getServerSideProps({ params }) {
@@ -108,11 +108,8 @@ export default function ProfilePage({ profile }) {
                 <h1>{profile.name}</h1>
                 <p>{profile.bio}</p>
                 <ul>
-                    <li>生日: {profile.birthDate}</li>
-                    <li>加入时间: {new Date(profile.joinDate).toLocaleString()}</li>
-                    <li>上次活动时间: {new Date(profile.lastActive).toLocaleString()}</li>
+                    <li>来源：{profile.group}</li>
                 </ul>
-                <button>了解更多</button>
             </div>
         </>
     );

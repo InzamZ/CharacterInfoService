@@ -84,6 +84,7 @@ export default function ProfilePage({ profile }) {
         <>
             <Head>
                 <meta property="og:title" content={profile.name} />
+                <meta property="og:site_name" content="{profile.group}" />
                 <meta property="og:description" content={profile.bio} />
                 <meta property="og:image" content={profile.avatar} />
                 <meta property="og:url" content={`https://char.misaka19614.com/profile/userId/${profile.uuid}`} />
